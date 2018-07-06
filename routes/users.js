@@ -13,12 +13,12 @@ const validateRegisterInput = require("../validation/register"),
 // Load User model
 const User = require("../models/User");
 
-// @route   GET api/users/test
+// @route   GET users/test
 // @desc    Tests users route
 // @access  Public
 router.get("/test", (req, res) => res.json({ msg: "Users Works" }));
 
-// @route   POST api/users/register
+// @route   POST users/register
 // @desc    Register User
 // @access  Public
 router.post("/register", (req, res) => {
@@ -61,7 +61,7 @@ router.post("/register", (req, res) => {
     });
 });
 
-// @route   POST api/users/login
+// @route   POST users/login
 // @desc    Login User / Returning JWT
 // @access  Public
 router.post("/login", (req, res) => {
@@ -113,7 +113,7 @@ router.post("/login", (req, res) => {
     });
 });
 
-// @route   GET api/users/current
+// @route   GET users/current
 // @desc    Return current user
 // @access  Private
 router.get(
