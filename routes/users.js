@@ -9,6 +9,7 @@ const express = require("express"),
 // Load input validation
 const validateRegisterInput = require("../validation/register"),
     validateLoginInput = require("../validation/login");
+validateChangePasswordInput = require("../validation/change-password");
 
 // Load User model
 const User = require("../models/User");
@@ -112,6 +113,56 @@ router.post("/login", (req, res) => {
         });
     });
 });
+
+// @route   PUT users/login
+// @desc    Changes user password
+// @access private
+router.put(
+    "/login",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        const { errors, isValid } = validateChangePasswordInput(req.body);
+
+        // Check Validation
+        if (!isValid) {
+            return res.status(400).json(errors);
+        }
+
+        const email = req.body.email,
+            password = req.body.password;
+
+        let newPassword = req.body.newPassword;
+
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(newPassword, salt, (err, hash) => {
+                if (err) throw err;
+                newPassword = hash;
+
+                // Find user by email
+                User.findOneAndUpdate(
+                    { email },
+                    { $set: { password: newPassword } }
+                ).then(user => {
+                    // Check for user
+                    if (!user) {
+                        errors.email = "User not found";
+                        return res.status(404).json(errors);
+                    }
+
+                    // Check password
+                    bcrypt.compare(password, user.password).then(isMatch => {
+                        if (isMatch) {
+                            res.json({ success: true });
+                        } else {
+                            errors.password = "Password incorrect";
+                            return res.status(400).json(errors);
+                        }
+                    });
+                });
+            });
+        });
+    }
+);
 
 // @route   GET users/current
 // @desc    Return current user
