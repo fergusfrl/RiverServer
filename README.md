@@ -14,8 +14,8 @@ touch keys
 
 # Add content to keys:
 module.exports = {
-    mongoURI: "mongodb://<dbuser>:<dbpassword>@ds263639.mlab.com:63639/users",
-    secretOrKey: "secret"
+    mongoURI: <MongoDB URI>,
+    secretOrKey: <secretOrKey>
 };
 
 # Run Flow Aggregator
