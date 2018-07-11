@@ -4,6 +4,7 @@ const express = require("express"),
     passport = require("passport"),
     cors = require("cors"),
     users = require("./routes/users"),
+    riverGuides = require("./routes/river-guides"),
     app = express(),
     db = require("./config/keys").mongoURI;
 
@@ -27,6 +28,7 @@ require("./config/passport.js")(passport);
 
 // Use Routes
 app.use("/users", users);
+app.use("/guides", riverGuides);
 
-const port = process.env.PORT || 3031;
+const port = process.env.PORT || 3032;
 app.listen(port, () => console.log(`Server running on port ${port}`));

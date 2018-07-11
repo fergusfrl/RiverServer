@@ -1,6 +1,6 @@
-# Authentication Boilerplate
+# RiverServer
 
-> An authentication boilerplate to base future web apps on
+> Server for RiverWiki
 
 ## Quick Start
 
@@ -21,5 +21,5 @@ module.exports = {
 # Run Flow Aggregator
 npm start
 
-# Server runs on http://localhost:3031
+# Server runs on http://localhost:3032
 ```
