@@ -10,50 +10,20 @@ const RiverGuideSchema = new Schema({
         type: String,
         required: true
     },
-    river: {
-        type: String
-    },
-    region: {
-        type: String
-    },
-    gaugeName: {
-        type: String
-    },
-    grade: [
-        {
-            from: { type: Number },
-            to: { type: Number },
-            grade: { type: String }
-        }
-    ],
-    minFlow: {
-        type: Number
-    },
-    maxFlow: {
-        type: Number
-    },
-    putIn: {
-        description: {
-            type: String
-        },
-        coords: {
-            lat: { type: Number },
-            lng: { type: Number }
-        }
-    },
-    takeOut: {
-        description: {
-            type: String
-        },
-        coords: {
-            lat: { type: Number },
-            lng: { type: Number }
-        }
-    },
-    coords: {
-        lat: { type: Number },
-        lng: { type: Number }
-    },
+    river: { type: String },
+    region: { type: String },
+    gaugeName: { type: String },
+    grade: { type: Number },
+    minFlow: { type: Number },
+    maxFlow: { type: Number },
+    putInDescription: { type: String },
+    putInLat: { type: Number },
+    putInLng: { type: Number },
+    takeOutDdescription: { type: String },
+    takeOutLatat: { type: Number },
+    takeOutLng: { type: Number },
+    lat: { type: Number },
+    lng: { type: Number },
     description: {
         type: String,
         required: true
