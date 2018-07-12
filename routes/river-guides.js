@@ -61,20 +61,8 @@ router.post(
             grade: data.grade,
             minFlow: data.minFlow,
             maxFlow: data.maxFlow,
-            putIn: {
-                description: data.putIn.description,
-                coords: {
-                    lat: data.putIn.lat,
-                    lng: data.putIn.lng
-                }
-            },
-            takeOut: {
-                description: data.takeOut.description,
-                coords: {
-                    lat: data.takeOut.lat,
-                    lng: data.takeOut.lng
-                }
-            },
+            putIn: data.putIn,
+            takeOut: data.takeOut,
             coords: {
                 lat: data.lat,
                 lng: data.lng
@@ -85,6 +73,39 @@ router.post(
         newGuide.save().then(guide => res.json(guide));
     }
 );
+
+// @route   PUT guide/:id
+// @desc    Update guide by id
+// @access  Private
+router.put(
+    "/:id",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        // Validation
+        const { errors, isValid } = validatePostInput(req.body);
+        if (!isValid) {
+            return res.status(401).json(errors);
+        }
+        
+        const data = req.body;
+        const updateObject = {
+            ...(data.title && { title: data.title }),
+            ...(data.river && { river: data.river }),
+            ...(data.region && { region: data.region }),
+            ...(data.gaugeName && { gaugeName: data.gaugeName }),
+            ...(data.grade && { grade: data.grade }),
+            ...(data.minFlow && { minFlow: data.minFlow }),
+            ...(data.maxFlow && { maxFlow: data.maxFlow }),
+            ...(data.putIn && { putIn: data.putIn }),
+            ...(data.takeOut && { takeOut: data.takeOut }),
+            ...(data.coords.lat && { coords: { lat: data.coords.lat } }),
+            ...(data.coords.lng && { coords: { lng: data.coords.lng } }),
+            ...(data.description && { description: data.description })
+        };
+        
+        Guide.findByIdAndUpdate(req.params.id, { $set: updateObject });
+    };
+)
 
 // @route   DELETE guide/:id
 // @desc    Delete guide by id
