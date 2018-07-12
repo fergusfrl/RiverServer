@@ -50,43 +50,37 @@ router.post(
         if (!isValid) {
             return res.status(400).json(errors);
         }
-
-        const newGuide = new Guide({
-            author: req.user.id,
-            title: req.body.title,
-            river: req.body.river,
-            region: req.body.region,
-            gaugeName: req.body.gaugeName,
-            grade: [
-                {
-                    from: req.body.from,
-                    to: req.body.to,
-                    grade: req.body.grade
-                }
-            ],
-            minFlow: req.body.minFlow,
-            maxFlow: req.body.maxFlow,
-            putIn: {
-                description: req.body.putIn.description,
+        
+        const data = req.body,
+              newGuide = new Guide({
+                author: req.user.id,
+                title: data.title,
+                river: data.river,
+                region: data.region,
+                gaugeName: data.gaugeName,
+                grade: data.grade,
+                minFlow: data.minFlow,
+                maxFlow: data.maxFlow,
+                putIn: {
+                    description: data.putIn.description,
+                    coords: {
+                        lat: data.putIn.lat,
+                        lng: data.putIn.lng
+                    }
+                },
+                takeOut: {
+                    description: data.takeOut.description,
+                    coords: {
+                        lat: data.takeOut.lat,
+                        lng: data.takeOut.lng
+                    }
+                },
                 coords: {
-                    lat: req.body.putIn.lat,
-                    lng: req.body.putIn.lng
-                }
-            },
-            takeOut: {
-                description: req.body.takeOut.description,
-                coords: {
-                    lat: req.body.takeOut.lat,
-                    lng: req.body.takeOut.lng
-                }
-            },
-            coords: {
-                lat: 4,
-                lng: 5
-            },
-            description: req.body.description,
-            dateCreated: req.body.dateCreated
-        });
+                    lat: data.lat,
+                    lng: data.lng
+                },
+                description: data.description
+            });
 
         newGuide.save().then(guide => res.json(guide));
     }
