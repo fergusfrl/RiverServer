@@ -30,5 +30,5 @@ require("./config/passport.js")(passport);
 app.use("/users", users);
 app.use("/guides", riverGuides);
 
-const port = process.env.PORT || 3032;
+const port = process.env.PORT || 3031;
 app.listen(port, () => console.log(`Server running on port ${port}`));

@@ -21,5 +21,5 @@ module.exports = {
 # Run Flow Aggregator
 npm start
 
-# Server runs on http://localhost:3032
+# Server runs on http://localhost:3031
 ```

@@ -50,7 +50,7 @@ router.post(
         if (!isValid) {
             return res.status(400).json(errors);
         }
-        
+
         const data = req.body;
         const newGuide = new Guide({
             author: req.user.id,
@@ -86,7 +86,7 @@ router.put(
         if (!isValid) {
             return res.status(401).json(errors);
         }
-        
+
         const data = req.body;
         const updateObject = {
             ...(data.title && { title: data.title }),
@@ -102,10 +102,10 @@ router.put(
             ...(data.coords.lng && { coords: { lng: data.coords.lng } }),
             ...(data.description && { description: data.description })
         };
-        
+
         Guide.findByIdAndUpdate(req.params.id, { $set: updateObject });
-    };
-)
+    }
+);
 
 // @route   DELETE guide/:id
 // @desc    Delete guide by id
