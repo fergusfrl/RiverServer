@@ -51,36 +51,36 @@ router.post(
             return res.status(400).json(errors);
         }
         
-        const data = req.body,
-              newGuide = new Guide({
-                author: req.user.id,
-                title: data.title,
-                river: data.river,
-                region: data.region,
-                gaugeName: data.gaugeName,
-                grade: data.grade,
-                minFlow: data.minFlow,
-                maxFlow: data.maxFlow,
-                putIn: {
-                    description: data.putIn.description,
-                    coords: {
-                        lat: data.putIn.lat,
-                        lng: data.putIn.lng
-                    }
-                },
-                takeOut: {
-                    description: data.takeOut.description,
-                    coords: {
-                        lat: data.takeOut.lat,
-                        lng: data.takeOut.lng
-                    }
-                },
+        const data = req.body;
+        const newGuide = new Guide({
+            author: req.user.id,
+            title: data.title,
+            river: data.river,
+            region: data.region,
+            gaugeName: data.gaugeName,
+            grade: data.grade,
+            minFlow: data.minFlow,
+            maxFlow: data.maxFlow,
+            putIn: {
+                description: data.putIn.description,
                 coords: {
-                    lat: data.lat,
-                    lng: data.lng
-                },
-                description: data.description
-            });
+                    lat: data.putIn.lat,
+                    lng: data.putIn.lng
+                }
+            },
+            takeOut: {
+                description: data.takeOut.description,
+                coords: {
+                    lat: data.takeOut.lat,
+                    lng: data.takeOut.lng
+                }
+            },
+            coords: {
+                lat: data.lat,
+                lng: data.lng
+            },
+            description: data.description
+        });
 
         newGuide.save().then(guide => res.json(guide));
     }
