@@ -52,6 +52,7 @@ router.post(
         }
 
         const data = req.body;
+
         const newGuide = new Guide({
             author: req.user.id,
             title: data.title,
@@ -62,11 +63,13 @@ router.post(
             minFlow: data.minFlow,
             maxFlow: data.maxFlow,
             putIn: data.putIn,
+            putInLat: data.putInLat,
+            putInLng: data.putInLng,
             takeOut: data.takeOut,
-            coords: {
-                lat: data.lat,
-                lng: data.lng
-            },
+            takeOutLat: data.takeOutLat,
+            takeOutLng: data.takeOutLng,
+            lat: data.lat,
+            lng: data.lng,
             description: data.description
         });
 
@@ -74,20 +77,15 @@ router.post(
     }
 );
 
-// @route   PUT guide/:id
+// @route   PUT guides/:id
 // @desc    Update guide by id
 // @access  Private
 router.put(
     "/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        // Validation
-        const { errors, isValid } = validatePostInput(req.body);
-        if (!isValid) {
-            return res.status(401).json(errors);
-        }
-
         const data = req.body;
+
         const updateObject = {
             ...(data.title && { title: data.title }),
             ...(data.river && { river: data.river }),
@@ -98,12 +96,18 @@ router.put(
             ...(data.maxFlow && { maxFlow: data.maxFlow }),
             ...(data.putIn && { putIn: data.putIn }),
             ...(data.takeOut && { takeOut: data.takeOut }),
-            ...(data.coords.lat && { coords: { lat: data.coords.lat } }),
-            ...(data.coords.lng && { coords: { lng: data.coords.lng } }),
+            ...(data.lat && { lat: data.lat }),
+            ...(data.lng && { lng: data.lng }),
             ...(data.description && { description: data.description })
         };
 
-        Guide.findByIdAndUpdate(req.params.id, { $set: updateObject });
+        Guide.findByIdAndUpdate(
+            req.params.id.toString(),
+            { $set: updateObject },
+            { upsert: true, new: true }
+        )
+            .then(guide => res.json(guide))
+            .catch(err => console.log(err));
     }
 );
 
