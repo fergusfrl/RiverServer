@@ -62,15 +62,10 @@ router.post(
             gaugeName: data.gaugeName,
             minFlow: data.minFlow,
             maxFlow: data.maxFlow,
-            putIn: data.putIn,
-            putInLat: data.putInLat,
-            putInLng: data.putInLng,
-            takeOut: data.takeOut,
-            takeOutLat: data.takeOutLat,
-            takeOutLng: data.takeOutLng,
             lat: data.lat,
             lng: data.lng,
-            description: data.description
+            description: data.description,
+            markers: data.markers
         });
 
         newGuide.save().then(guide => res.json(guide));
@@ -94,8 +89,6 @@ router.put(
             ...(data.grade && { grade: data.grade }),
             ...(data.minFlow && { minFlow: data.minFlow }),
             ...(data.maxFlow && { maxFlow: data.maxFlow }),
-            ...(data.putIn && { putIn: data.putIn }),
-            ...(data.takeOut && { takeOut: data.takeOut }),
             ...(data.lat && { lat: data.lat }),
             ...(data.lng && { lng: data.lng }),
             ...(data.description && { description: data.description })

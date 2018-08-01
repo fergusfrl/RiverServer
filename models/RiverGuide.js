@@ -16,12 +16,7 @@ const RiverGuideSchema = new Schema({
     grade: { type: String },
     minFlow: { type: Number },
     maxFlow: { type: Number },
-    putInDescription: { type: String },
-    putInLat: { type: Number },
-    putInLng: { type: Number },
-    takeOutDdescription: { type: String },
-    takeOutLat: { type: Number },
-    takeOutLng: { type: Number },
+    markers: [],
     lat: { type: Number },
     lng: { type: Number },
     description: {
