@@ -65,7 +65,8 @@ router.post(
             lat: data.lat,
             lng: data.lng,
             description: data.description,
-            markers: data.markers
+            markers: data.markers,
+            flowSpecificGrades: data.flowSpecificGrades
         });
 
         newGuide.save().then(guide => res.json(guide));

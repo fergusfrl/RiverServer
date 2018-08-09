@@ -17,6 +17,7 @@ const RiverGuideSchema = new Schema({
     minFlow: { type: Number },
     maxFlow: { type: Number },
     markers: [],
+    flowSpecificGrades: [],
     lat: { type: Number },
     lng: { type: Number },
     description: {
