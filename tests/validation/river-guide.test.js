@@ -1,4 +1,4 @@
-const validatePostInput = require("../../validation/river-guide");
+const validatePostInput = require("../../src/validation/river-guide");
 
 // description validation
 test("Required description error is thrown", () => {

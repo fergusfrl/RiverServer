@@ -1,4 +1,4 @@
-const validateChangePasswordInput = require("../../validation/change-password");
+const validateChangePasswordInput = require("../../src/validation/change-password");
 
 // email validation
 test("Invalid email error is thrown", () => {

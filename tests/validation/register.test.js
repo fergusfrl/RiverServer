@@ -1,4 +1,4 @@
-const validateRegisterInput = require("../../validation/register");
+const validateRegisterInput = require("../../src/validation/register");
 
 // name validation
 test("Name length error is thrown when name is too short", () => {

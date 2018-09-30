@@ -1,4 +1,4 @@
-const validateLoginInput = require("../../validation/login");
+const validateLoginInput = require("../../src/validation/login");
 
 // email validation
 test("Invalid email error is thrown", () => {

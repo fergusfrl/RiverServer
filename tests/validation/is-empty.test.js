@@ -1,4 +1,4 @@
-const isEmpty = require("../../validation/is-empty");
+const isEmpty = require("../../src/validation/is-empty");
 
 // resolves to true
 test("empty string resolves to true", () => {
