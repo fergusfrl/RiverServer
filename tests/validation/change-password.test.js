@@ -34,7 +34,7 @@ test("Update password error is thrown if too short", () => {
         validateChangePasswordInput({
             newPassword: "12345"
         }).errors.newPassword
-    ).toBe("Password must be at least 6 characters");
+    ).toBe("Password must be at least 3 characters");
 });
 
 test("Update password error is thrown if too long", () => {
