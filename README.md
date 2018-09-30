@@ -8,15 +8,8 @@
 # Install dependencies
 npm install
 
-# Create keys file
-cd config/
-touch keys
-
-# Add content to keys:
-module.exports = {
-    mongoURI: <MongoDB URI>,
-    secretOrKey: <secretOrKey>
-};
+# Add Environment Configuration
+touch .env
 
 # Run Flow Aggregator
 npm start

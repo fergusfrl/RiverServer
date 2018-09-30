@@ -21,16 +21,16 @@ module.exports = function validateChangePasswordInput(data) {
         errors.password = "Password field is required";
     }
 
+    if (!Validator.isLength(data.newPassword, { min: 6, max: 30 })) {
+        errors.newPassword = "Password must be at least 6 characters";
+    }
+
     if (Validator.isEmpty(data.newPassword)) {
         errors.newPassword = "Updated password field is required";
     }
 
     if (Validator.isEmpty(data.newPassword2)) {
         errors.newPassword2 = "Confirm updated password field is required";
-    }
-
-    if (!Validator.isLength(data.newPassword, { min: 6, max: 30 })) {
-        errors.newPassword = "Password must be at least 6 characters";
     }
 
     if (!Validator.equals(data.newPassword, data.newPassword2)) {
