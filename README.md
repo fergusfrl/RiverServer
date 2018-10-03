@@ -1,8 +1,8 @@
-[![CircleCI](https://circleci.com/gh/fergusfrl/RiverServer/tree/master.svg?style=svg)](https://circleci.com/gh/fergusfrl/RiverServer/tree/master)
-
 # RiverServer
 
 > Server for RiverWiki
+
+[![CircleCI](https://circleci.com/gh/fergusfrl/RiverServer/tree/master.svg?style=svg)](https://circleci.com/gh/fergusfrl/RiverServer/tree/master)
 
 ## Quick Start
 
@@ -12,6 +12,9 @@ npm install
 
 # Add Environment Configuration
 touch .env
+
+# Add environment variables
+
 
 # Run Flow Aggregator
 npm start
