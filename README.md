@@ -2,6 +2,8 @@
 
 > Server for RiverWiki
 
+<br/>
+
 [![CircleCI](https://circleci.com/gh/fergusfrl/RiverServer/tree/master.svg?style=svg)](https://circleci.com/gh/fergusfrl/RiverServer/tree/master)
 
 ## Quick Start
