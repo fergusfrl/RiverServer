@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/fergusfrl/RiverServer/tree/development.svg?style=svg)](https://circleci.com/gh/fergusfrl/RiverServer/tree/development)
+
 # RiverServer
 
 > Server for RiverWiki
