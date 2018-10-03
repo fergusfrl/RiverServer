@@ -1,6 +1,6 @@
 # RiverServer
 
-> Server for RiverWiki
+Server for RiverWiki
 
 <br/>
 
