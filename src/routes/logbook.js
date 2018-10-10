@@ -52,7 +52,28 @@ router.post(
 
 
 // Add @PUT route - allow user to edit own entries
-
+router.put(
+  '/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { date, section, participantCount, rating, description } = req.body;
+    const updateLog = {
+      ...(date && { date: date }),
+      ...(section && { section: section }),
+      ...(participantCount && { participantCount: participantCount }),
+      ...(rating && { rating: rating }),
+      ...(description && { description: description })
+    };
+    
+    LogEntry.findOneAndUpdate(
+      { user: req.user.id, _id: req.params.id },
+      { $set: updateLog },
+      { upsert: true, new: true }
+    )
+     .then(logEntry => res.json(logEntry))
+     .catch(err => console.log(err));
+  }
+);
 
 // Add @DELETE route - allow users to delete own entries
 
