@@ -13,24 +13,29 @@ const User = require('../../models/User');
 // @access  Public
 router.get('/test', (req, res) => res.json({ msg: 'Profile Works' }));
 
-// @route   GET api/profile
-// @desc    Get current users profile
+
+// Add @GET route - get all log entries affiliated with user
+
+// @route   POST api/posts
+// @desc    Create post
 // @access  Private
-router.get(
+router.post(
   '/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const errors = {};
+    const newLogEntry = new Post({
+      user: req.user.id,
+      date: req.body.date,
+      section: req.body.section,
+      participantCount: req.body.participantCount,
+      rating: req.body.rating,
+      description: req.body.description
+    });
 
-    Profile.findOne({ user: req.user.id })
-      .populate('user', ['name', 'avatar'])
-      .then(logEntry => {
-        if (!logEntry) {
-          errors.noprofile = 'There are no log entries for this user';
-          return res.status(404).json(errors);
-        }
-        res.json(logEntry);
-      })
-      .catch(err => res.status(404).json(err));
+    newLogEntry.save().then(logEntry => res.json(logEntry));
   }
 );
+
+// Add @PUT route - allow user to edit own entries
+
+// Add @DELETE route - allow users to delete own entries
