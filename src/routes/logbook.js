@@ -31,7 +31,7 @@ router.get(
 
 
 // @route   POST logbook/
-// @desc    Create post
+// @desc    Create log entry
 // @access  Private
 router.post(
   '/',
@@ -51,7 +51,9 @@ router.post(
 );
 
 
-// Add @PUT route - allow user to edit own entries
+// @route   PUT logbook/:id
+// @desc    Update log entry
+// @access   Private
 router.put(
   '/:id',
   passport.authenticate('jwt', { session: false }),
@@ -75,5 +77,21 @@ router.put(
   }
 );
 
-// Add @DELETE route - allow users to delete own entries
+
+// @route   DELETE logbook/:id
+// @desc    Deletes a log entry
+// @access  Private
+router.delete(
+  './:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    LogEntry.findOneAndRemove({ user: req.user.id, _id: req.params.id })
+      .then(() => {
+        LogEntry.remove().then(() => {
+          res.json({ success: true });
+        })
+      })
+      .catch(err => console.log(err));
+  }
+)
 
