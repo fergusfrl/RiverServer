@@ -33,4 +33,4 @@ const LogEntrySchema = new Schema({
     }
 });
 
-module.exports = User = mongoose.model("logEntry", LogEntrySchema);
+module.exports = LogEntry = mongoose.model("logEntry", LogEntrySchema);
