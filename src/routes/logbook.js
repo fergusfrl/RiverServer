@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 
 // Load Profile Model
-const LogEntry = require('../../models/LogEntry');
+const LogEntry = require('../models/LogEntry');
 // Load User Model
-const User = require('../../models/User');
+const User = require('../models/User');
 
 
 // @route   GET logbook/test
