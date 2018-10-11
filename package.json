@@ -2,7 +2,7 @@
     "name": "riverserver",
     "version": "1.0.0",
     "description": "Server for the RiverWiki - handles authentication and guide posts",
-    "main": "scr/server.js",
+    "main": "src/server.js",
     "scripts": {
         "start": "node src/server.js",
         "dev": "nodemon src/server.js",
