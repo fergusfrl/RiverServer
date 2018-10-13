@@ -86,11 +86,9 @@ router.delete(
     "/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
-        LogEntry.findOneAndRemove({ user: req.user.id, _id: req.params.id })
+        LogEntry.findByIdAndRemove(req.params.id)
             .then(() => {
-                LogEntry.remove().then(() => {
-                    res.json({ success: true });
-                });
+                res.json({ success: true });
             })
             .catch(err => console.log(err));
     }
