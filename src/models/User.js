@@ -22,6 +22,14 @@ const UserSchema = new Schema({
     date: {
         type: Date,
         default: Date.now()
+    },
+    favourites: {
+        type: [String],
+        required: false
+    },
+    defaultActivity: {
+        type: String,
+        required: false
     }
 });
 
