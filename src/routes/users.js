@@ -45,7 +45,8 @@ router.post("/register", (req, res) => {
                 name: req.body.name,
                 email: req.body.email,
                 avatar,
-                password: req.body.password
+                password: req.body.password,
+                defaultActivity: req.body.defaultActivity
             });
 
             bcrypt.genSalt(10, (err, salt) => {
@@ -93,7 +94,9 @@ router.post("/login", (req, res) => {
                     name: user.name,
                     email: user.email,
                     avatar: user.avatar,
-                    creationDate: user.date
+                    creationDate: user.date,
+                    favourites: user.favourites,
+                    defaultActivity: user.defaultActivity
                 };
 
                 // Sign Token
