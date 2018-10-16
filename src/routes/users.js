@@ -196,7 +196,7 @@ router.put(
     (req, res) => {
         User.findOneAndUpdate(
             { email: req.body.email },
-            { $pll: { favourites: req.params.id } }
+            { $pull: { favourites: req.params.id } }
         )
         .then(res => {
             res.json({ success: true })
