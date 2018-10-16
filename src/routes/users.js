@@ -169,6 +169,42 @@ router.put(
     }
 );
 
+// @route   PUT users/current/add-favourite/:id
+// @desc    Add a favourite
+// @access  Private
+router.put(
+    '/current/add-favourite/:id',
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        User.findOneAndUpdate(
+            { email: req.body.email },
+            { $push: { favourites: req.params.id } }
+        )
+        .then(res => {
+            res.json({ success: true })
+        })
+        .catch(err => console.log(err));
+    }
+)
+
+// @route   PUT users/current/remove-favourites/:id
+// @desc    Remove a favourite
+// @access  Private
+router.put(
+    '/current/add-favourite/:id',
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        User.findOneAndUpdate(
+            { email: req.body.email },
+            { $pll: { favourites: req.params.id } }
+        )
+        .then(res => {
+            res.json({ success: true })
+        })
+        .catch(err => console.log(err));
+    }
+)
+
 // @route   GET users/current
 // @desc    Return current user
 // @access  Private
