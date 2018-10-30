@@ -13,6 +13,7 @@ const FishingGuideSchema = new Schema({
     river: { type: String },
     region: { type: String },
     catch: { type: String },
+    activity: { type: String },
     gaugeName: { type: String },
     minFlow: { type: Number },
     maxFlow: { type: Number },
@@ -29,4 +30,7 @@ const FishingGuideSchema = new Schema({
     }
 });
 
-module.exports = FishingGuide = mongoose.model("fishingGuides", FishingGuideSchema);
+module.exports = FishingGuide = mongoose.model(
+    "fishingGuides",
+    FishingGuideSchema
+);

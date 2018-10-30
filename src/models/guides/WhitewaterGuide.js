@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const SwimmingGuideSchema = new Schema({
+const WhitewaterGuideSchema = new Schema({
     author: {
         type: Schema.Types.ObjectId,
         ref: "users"
@@ -13,7 +13,11 @@ const SwimmingGuideSchema = new Schema({
     river: { type: String },
     region: { type: String },
     gaugeName: { type: String },
+    grade: { type: String },
+    minFlow: { type: Number },
+    maxFlow: { type: Number },
     markers: [],
+    flowSpecificGrades: [],
     lat: { type: Number },
     lng: { type: Number },
     description: {
@@ -26,7 +30,7 @@ const SwimmingGuideSchema = new Schema({
     }
 });
 
-module.exports = SwimmingGuide = mongoose.model(
-    "swimmingGuides",
-    SwimmingGuideSchema
+module.exports = WhitewaterGuide = mongoose.model(
+    "whitewaterGuides",
+    WhitewaterGuideSchema
 );

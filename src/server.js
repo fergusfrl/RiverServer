@@ -4,7 +4,12 @@ const express = require("express"),
     passport = require("passport"),
     cors = require("cors"),
     users = require("./routes/users"),
-    riverGuides = require("./routes/river-guides"),
+    guides = require("./routes/guides"),
+    whitewater = require("./routes/categories/whitewater"),
+    flatwater = require("./routes/categories/flatwater"),
+    swimming = require("./routes/categories/swimming"),
+    motorised = require("./routes/categories/motorised"),
+    fishing = require("./routes/categories/fishing"),
     logbook = require("./routes/logbook"),
     app = express(),
     db = require("./config/keys").mongoURI;
@@ -29,8 +34,15 @@ require("./config/passport.js")(passport);
 
 // Use Routes
 app.use("/users", users);
-app.use("/guides", riverGuides);
+app.use("/guides", guides);
 app.use("/logbook", logbook);
+
+// Guide routes
+app.use("/whitewater", whitewater);
+app.use("/flatwater", flatwater);
+app.use("/fishing", fishing);
+app.use("/swimming", swimming);
+app.use("/motorised", motorised);
 
 const port = process.env.PORT || 3031;
 app.listen(port, () => console.log(`Server running on port ${port}`));

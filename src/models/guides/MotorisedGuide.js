@@ -13,8 +13,8 @@ const MotorisedGuideSchema = new Schema({
     river: { type: String },
     region: { type: String },
     activity: {
-      type: String,
-      required: true
+        type: String,
+        required: true
     },
     gaugeName: { type: String },
     grade: { type: String },
@@ -34,4 +34,7 @@ const MotorisedGuideSchema = new Schema({
     }
 });
 
-module.exports = MotorisedGuide = mongoose.model("motorisedGuides", MotorisedGuideSchema);
+module.exports = MotorisedGuide = mongoose.model(
+    "motorisedGuides",
+    MotorisedGuideSchema
+);

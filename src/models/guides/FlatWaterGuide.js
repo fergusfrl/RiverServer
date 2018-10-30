@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const FlatWaterGuideSchema = new Schema({
+const FlatwaterGuideSchema = new Schema({
     author: {
         type: Schema.Types.ObjectId,
         ref: "users"
@@ -13,9 +13,9 @@ const FlatWaterGuideSchema = new Schema({
     river: { type: String },
     region: { type: String },
     activity: {
-      type: String,
-      required: true
-    }
+        type: String,
+        required: true
+    },
     gaugeName: { type: String },
     markers: [],
     lat: { type: Number },
@@ -30,4 +30,7 @@ const FlatWaterGuideSchema = new Schema({
     }
 });
 
-module.exports = FlatWaterGuide = mongoose.model("flatWaterGuides", FlatWaterGuideSchema);
+module.exports = FlatwaterGuide = mongoose.model(
+    "flatwaterGuides",
+    FlatwaterGuideSchema
+);
