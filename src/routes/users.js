@@ -187,11 +187,11 @@ router.put(
     }
 )
 
-// @route   PUT users/current/remove-favourites/:id
+// @route   DELETE users/current/remove-favourites/:id
 // @desc    Remove a favourite
 // @access  Private
-router.put(
-    '/current/add-favourite/:id',
+router.delete(
+    '/current/delete-favourite/:id',
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         User.findOneAndUpdate(
