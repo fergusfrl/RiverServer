@@ -45,7 +45,8 @@ router.post("/register", (req, res) => {
                 name: req.body.name,
                 email: req.body.email,
                 avatar,
-                password: req.body.password
+                password: req.body.password,
+                defaultActivity: req.body.defaultActivity
             });
 
             bcrypt.genSalt(10, (err, salt) => {
@@ -92,7 +93,10 @@ router.post("/login", (req, res) => {
                     id: user.id,
                     name: user.name,
                     email: user.email,
-                    avatar: user.avatar
+                    avatar: user.avatar,
+                    creationDate: user.date,
+                    favourites: user.favourites,
+                    defaultActivity: user.defaultActivity
                 };
 
                 // Sign Token
@@ -117,7 +121,7 @@ router.post("/login", (req, res) => {
 
 // @route   PUT users/login
 // @desc    Changes user password
-// @access private
+// @access  private
 router.put(
     "/login",
     passport.authenticate("jwt", { session: false }),
@@ -162,6 +166,42 @@ router.put(
                 });
             });
         });
+    }
+);
+
+// @route   PUT users/current/add-favourite/:id
+// @desc    Add a favourite
+// @access  Private
+router.put(
+    "/current/add-favourite/:id",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        User.findOneAndUpdate(
+            { email: req.body.email },
+            {
+                $push: { favourites: req.params.id }
+            }
+        )
+            .then(() => res.json({ success: true }))
+            .catch(err => console.log(err));
+    }
+);
+
+// @route   DELETE users/current/remove-favourites/:id
+// @desc    Remove a favourite
+// @access  Private
+router.delete(
+    "/current/delete-favourite/:id",
+    passport.authenticate("jwt", { session: false }),
+    (req, res) => {
+        User.findOneAndUpdate(
+            { email: req.body.email },
+            {
+                $pull: { favourites: req.params.id }
+            }
+        )
+            .then(() => res.json({ success: true }))
+            .catch(err => console.log(err));
     }
 );
 

@@ -1,17 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
 const passport = require("passport");
 
 const Guide = require("../models/RiverGuide");
 
 // Validation
 const validatePostInput = require("../validation/river-guide");
-
-// @route   GET guides/test
-// @desc    Tests post route
-// @access  Public
-router.get("/test", (req, res) => res.json({ msg: "Guide Works" }));
 
 // @route   GET guides/
 // @desc    Get all guides
