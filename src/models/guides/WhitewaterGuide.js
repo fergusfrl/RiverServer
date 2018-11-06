@@ -12,6 +12,7 @@ const WhitewaterGuideSchema = new Schema({
     },
     river: { type: String },
     region: { type: String },
+    activity: { type: String },
     gaugeName: { type: String },
     grade: { type: String },
     minFlow: { type: Number },

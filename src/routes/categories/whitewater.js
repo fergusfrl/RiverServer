@@ -52,6 +52,7 @@ router.post(
             title: data.title,
             river: data.river,
             region: data.region,
+            activity: data.activity,
             grade: data.grade,
             gaugeName: data.gaugeName,
             minFlow: data.minFlow,
@@ -80,13 +81,15 @@ router.put(
             ...(data.title && { title: data.title }),
             ...(data.river && { river: data.river }),
             ...(data.region && { region: data.region }),
+            ...(data.activity && { activity: data.activity }),
             ...(data.gaugeName && { gaugeName: data.gaugeName }),
             ...(data.grade && { grade: data.grade }),
             ...(data.minFlow && { minFlow: data.minFlow }),
             ...(data.maxFlow && { maxFlow: data.maxFlow }),
             ...(data.lat && { lat: data.lat }),
             ...(data.lng && { lng: data.lng }),
-            ...(data.description && { description: data.description })
+            ...(data.description && { description: data.description }),
+            ...(data.markers && { markers: data.markers })
         };
 
         Guide.findByIdAndUpdate(

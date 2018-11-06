@@ -121,7 +121,7 @@ router.post("/login", (req, res) => {
 
 // @route   PUT users/login
 // @desc    Changes user password
-// @access private
+// @access  private
 router.put(
     "/login",
     passport.authenticate("jwt", { session: false }),
@@ -173,37 +173,37 @@ router.put(
 // @desc    Add a favourite
 // @access  Private
 router.put(
-    '/current/add-favourite/:id',
+    "/current/add-favourite/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         User.findOneAndUpdate(
             { email: req.body.email },
-            { $push: { favourites: req.params.id } }
+            {
+                $push: { favourites: req.params.id }
+            }
         )
-        .then(res => {
-            res.json({ success: true })
-        })
-        .catch(err => console.log(err));
+            .then(() => res.json({ success: true }))
+            .catch(err => console.log(err));
     }
-)
+);
 
 // @route   DELETE users/current/remove-favourites/:id
 // @desc    Remove a favourite
 // @access  Private
 router.delete(
-    '/current/delete-favourite/:id',
+    "/current/delete-favourite/:id",
     passport.authenticate("jwt", { session: false }),
     (req, res) => {
         User.findOneAndUpdate(
             { email: req.body.email },
-            { $pull: { favourites: req.params.id } }
+            {
+                $pull: { favourites: req.params.id }
+            }
         )
-        .then(res => {
-            res.json({ success: true })
-        })
-        .catch(err => console.log(err));
+            .then(() => res.json({ success: true }))
+            .catch(err => console.log(err));
     }
-)
+);
 
 // @route   GET users/current
 // @desc    Return current user
